@@ -1,0 +1,15 @@
+.cache/
+dist/
+**/.DS_Store
+**/node_modules/
+**/builds/
+**/obj/
+**/Library/
+**/Temp/
+**/.vs/
+**/.stackdump
+**/Assets/AssetStoreTools*
+**/*.apk
+**/*.unitypackage
+
+**/*.sln

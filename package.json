@@ -1,0 +1,27 @@
+{
+  "name": "@croquet/wc-unity",
+  "version": "0.0.1",
+  "description": "Worldcore with Unity",
+  "main": "wc-unity.js",
+  "scripts": {
+    "start": "parcel wc-unity.html --out-file index.html -p 9009",
+    "build": "parcel build wc-unity.html --no-minify --out-file index.html"
+  },
+  "author": "Croquet Corporation",
+  "license": "ISC",
+  "dependencies": {
+    "@croquet/croquet": "file:./croquet",
+    "@croquet/worldcore": "file:worldcore",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-import-resolver-parcel": "^1.10.1",
+    "eslint-plugin-import": "^2.16.0",
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-clean-dist": "0.0.6",
+    "parcel-plugin-inline-source": "^1.0.0"
+  }
+}

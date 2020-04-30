@@ -1,0 +1,8 @@
+{
+  "name": "@croquet/croquet",
+  "version": "0.2.7-custom",
+  "description": "",
+  "main": "dist/croquet.min.js",
+  "author": "Croquet Corporation",
+  "license": "UNLICENSED"
+}
