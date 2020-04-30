@@ -16,7 +16,7 @@ public class CroquetBridgeTest : CroquetBridge
             croquetComponentType = null;
 
             string type = data.GetField("type").str;
-            if (type == "avatar") croquetComponentType = typeof(CroquetObjectTest);
+            if (type == "userAvatar") croquetComponentType = typeof(CroquetObjectTest);
         };
 
         // when an attach_camera message comes through from Croquet, dispatch it to
