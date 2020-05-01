@@ -27,6 +27,10 @@ export class NamedView extends View {
         this.registerName();
     }
 
+    destroy() {
+        this.detach();
+    }
+
     detach() {
         super.detach();
         namedViews.delete(this.name);

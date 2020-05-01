@@ -1,4 +1,5 @@
-import { addClassHash } from "@croquet/croquet";
+// import { addClassHash } from "@croquet/util";
+import { Constants } from "@croquet/croquet";
 import { GetNamedView } from "./NamedView";
 import { PM_Dynamic } from "./Pawn";
 import { GetViewDelta } from "./ViewRoot";
@@ -82,8 +83,11 @@ import { v3_zero, q_identity, v3_unit, m4_scalingRotationTranslation, m4_multipl
 //-- Mixin ---------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------
 
+Constants.WC_MIXIN_REGISTRY = [];
+Constants.WC_MIXIN_USAGE = [];
+
 export const mix = superclass => new MixinFactory(superclass);
-export const RegisterMixin = mixin => addClassHash(mixin);
+export const RegisterMixin = mixin => Constants.WC_MIXIN_REGISTRY.push(mixin);
 
 class MixinFactory  {
     constructor(superclass) {
@@ -91,7 +95,7 @@ class MixinFactory  {
     }
 
     with(...mixins) {
-        addClassHash(mixins);
+        Constants.WC_MIXIN_USAGE.push(mixins);
         return mixins.reduce((c, mixin) => mixin(c), this.superclass);
     }
 }
@@ -429,7 +433,7 @@ export const AM_Avatar = superclass => class extends AM_Smoothed(superclass) {
             let lastLoc = this.location;
             this.moveTo(this.verify(v3_add(this.location, v3_scale(this.velocity, delta)), lastLoc));
         }
-        this.future(this.avatar_tickStep).tick(this.avatar_tickStep);
+        if(!this.doomed)this.future(this.avatar_tickStep).tick(this.avatar_tickStep);
     }
     // Enables the subclass to ensure that this change is valid
     // Example - collision with a wall will change the result
@@ -585,7 +589,7 @@ export const AM_MouseLook = superclass => class extends AM_Smoothed(superclass) 
             if(this.strafeSpeed)loc = v3_add(loc, v3_scale( [ m4[0], m4[1], m4[2]], delta*this.strafeSpeed*this.multiplySpeed) );
             this.moveTo(this.verify(loc, lastLoc));
         }
-        this.future(this.mouseLook_tickStep).tick(this.mouseLook_tickStep);
+        if(!this.doomed)this.future(this.mouseLook_tickStep).tick(this.mouseLook_tickStep);
     }
 
     // Enables the subclass to ensure that this change is valid

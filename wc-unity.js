@@ -6,10 +6,10 @@
 // import 'core-js/stable'; // see https://github.com/parcel-bundler/parcel/issues/3308
 import 'regenerator-runtime/runtime';
 
-import { startSession, Constants } from "@croquet/croquet";
-import { ModelRoot, Actor, Pawn, mix, AM_Spatial, AM_Smoothed, AM_Avatar } from "@croquet/worldcore";
-import { q_axisAngle } from "@croquet/worldcore/src/Vector";
-import { PM_UnitySpatial, PM_UnitySmoothed, PM_UnityAvatar, UnityViewRoot, UnityViewStarter } from "@croquet/worldcore/src/UnityRender";
+import { Session, Constants } from "@croquet/croquet";
+import { ModelRoot, Actor, Pawn, mix, AM_Spatial, AM_Smoothed, AM_Avatar } from "./worldcore";
+import { q_axisAngle } from "./worldcore/src/Vector";
+import { PM_UnitySpatial, PM_UnitySmoothed, PM_UnityAvatar, UnityViewRoot, UnityViewStarter } from "./worldcore/src/UnityRender";
 
 const Q = Constants;
 Q.BALL_RADIUS = 0.2;
@@ -264,7 +264,7 @@ class UnitySessionView extends UnityViewRoot {
 async function go() {
     let lastStep = 0;
     UnityViewStarter.setViewRoot(UnitySessionView);
-    const session = await startSession("wc-unity14", UnitySessionModel, UnityViewStarter, { step: "manual", tps: "20x5", expectedSimFPS: 0 });
+    const session = await Session.join("wc-unity13", UnitySessionModel, UnityViewStarter, { step: "manual", tps: "20x5", expectedSimFPS: 0 });
     const step = () => {
         const now = Date.now();
         if (now - lastStep > 15) {
