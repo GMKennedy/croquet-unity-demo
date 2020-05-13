@@ -131,7 +131,9 @@ public class CroquetObject : MonoBehaviour
     private Quaternion StringToQuaternion(string val)
     {
         string[] nums = val.Split(',');
-        return new Quaternion(float.Parse(nums[0]) / valScale, float.Parse(nums[1]) / valScale, float.Parse(nums[2]) / valScale, float.Parse(nums[3]) / valScale);
+        Quaternion q = new Quaternion(float.Parse(nums[0]), float.Parse(nums[1]), float.Parse(nums[2]), float.Parse(nums[3]));
+        q.Normalize();
+        return q;
     }
     public void UpdateForTimeDelta(int deltaT)
     {
